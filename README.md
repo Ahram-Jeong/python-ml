@@ -1,1 +1,1 @@
-# 👀 NumPy, Pandas, Machine Learning
+# 👀 Study : Python and Machine Learning
