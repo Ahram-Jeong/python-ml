@@ -22,7 +22,7 @@ def get_news(search, ds, de) :
 
     while True :
         start = (page - 1) * 10 + 1
-        url = f"https://s.search.naver.com/p/newssearch/search.naver?de={de}&ds={ds}&eid=&field=0&force_original=&is_dts=0&is_sug_officeid=0&mynews=0&news_office_checked=&nlu_query=&nqx_theme=%7B%22theme%22%3A%7B%22main%22%3A%7B%22name%22%3A%22finance%22%7D%7D%7D&nso=%26nso%3Dso%3Add%2Cp%3Afrom{ds.replace('.', '')}to{de.replace('.', '')}%2Ca%3Aall&nx_and_query=&nx_search_hlquery=&nx_search_query=&nx_sub_query=&office_category=0&office_section_code=0&office_type=0&pd=3&photo=0&query={search}&query_original=&service_area=0&sort=1&spq=0&start={start}&where=news_tab_api&nso=so:dd,p:from{ds.replace('.', '')}to{ds.replace('.', '')},a:all"
+        url = f"https://s.search.naver.com/p/newssearch/search.naver?de={de}&ds={ds}&eid=&field=0&force_original=&is_dts=0&is_sug_officeid=0&mynews=0&news_office_checked=&nlu_query=&nqx_theme=%7B%22theme%22%3A%7B%22main%22%3A%7B%22name%22%3A%22finance%22%7D%7D%7D&nso=%26nso%3Dso%3Add%2Cp%3Afrom{ds.replace('.', '')}to{de.replace('.', '')}%2Ca%3Aall&nx_and_query=&nx_search_hlquery=&nx_search_query=&nx_sub_query=&office_category=0&office_section_code=0&office_type=0&pd=3&photo=0&query={search}&query_original=&service_area=0&sort=1&spq=0&start={start}&where=news_tab_api&nso=so:dd,p:from{ds.replace('.', '')}to{de.replace('.', '')},a:all"
         res = req.get(url) # 결과가 json 형태로 출력
         doc = eval(res.text.replace("\n", ""))
 
@@ -48,5 +48,5 @@ with st.sidebar :
     de = st.date_input("조회 종료일", pd.to_datetime("2024-06-30"))
 
 if search and ds and de :
-    df = get_news(search, ds.strftime("%Y%m%d"), de.strftime("%Y%m%d"))
+    df = get_news(search, ds.strftime("%Y.%m.%d"), de.strftime("%Y.%m.%d"))
     st.dataframe(df)
